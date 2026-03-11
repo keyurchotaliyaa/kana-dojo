@@ -891,7 +891,7 @@
     "character": "Ryu",
     "id": 89,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "冒険の始まりだ！",
@@ -901,7 +901,7 @@
     "character": "Hero / party lines",
     "id": 90,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "ここからが本番だ",
@@ -911,7 +911,7 @@
     "character": "Guild Handler lines",
     "id": 91,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "次はもっと強くなる",
@@ -921,7 +921,7 @@
     "character": "Rival characters",
     "id": 92,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "運命なんて、変えてみせる！",
@@ -931,7 +931,7 @@
     "character": "Class Zero",
     "id": 93,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "生きるってのは、戦うってことだ",
@@ -941,7 +941,7 @@
     "character": "Ichiban Kasuga",
     "id": 94,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "この戦い、負けられない！",
@@ -951,7 +951,7 @@
     "character": "Various protagonists",
     "id": 95,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "それもまた一興",
@@ -961,7 +961,7 @@
     "character": "Nobunaga Oda",
     "id": 96,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "世界を救うって、そういうことだろ？",
@@ -970,7 +970,7 @@
     "game": "Persona 5 Strikers",
     "character": "Joker",
     "id": 97,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
