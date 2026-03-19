@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { ScrollRestoration } from 'next-scroll-restoration';
 import WelcomeModal from '@/shared/components/Modals/WelcomeModal';
 import { DonationModal } from '@/features/Preferences';
+import useOnboardingStore from '@/shared/store/useOnboardingStore';
 import {
   AchievementNotificationContainer,
   AchievementIntegration,
@@ -92,6 +93,7 @@ export default function ClientLayout({
   const [fontsModule, setFontsModule] = useState<FontObject[] | null>(null);
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const previousPathnameRef = useRef<string | null>(null);
+  const hasSeenWelcome = useOnboardingStore(state => state.hasSeenWelcome);
 
   // Memoize fontClassName calculation to prevent recalculation on every render (5-10ms savings)
   const fontClassName = useMemo(() => {
@@ -135,23 +137,19 @@ export default function ClientLayout({
     }
 
     if ((isDev || isPreviewDeployment) && isPreferencesRoute) {
-      if (
-        typeof window !== 'undefined' &&
-        sessionStorage.getItem(donationSessionKey) !== 'true'
-      ) {
-        sessionStorage.setItem(donationSessionKey, 'true');
-        const timer = setTimeout(() => {
-          setIsDonationModalOpen(true);
-        }, 500);
-        return () => clearTimeout(timer);
-      }
+      const timer = setTimeout(() => {
+        setIsDonationModalOpen(true);
+      }, 500);
+      previousPathnameRef.current = pathname;
+      return () => clearTimeout(timer);
     }
 
-    if (
-      typeof window !== 'undefined' &&
+    const shouldShowInProduction =
+      hasSeenWelcome &&
       sessionStorage.getItem(donationEligibleKey) === 'true' &&
-      sessionStorage.getItem(donationSessionKey) !== 'true'
-    ) {
+      sessionStorage.getItem(donationSessionKey) !== 'true';
+
+    if (shouldShowInProduction) {
       sessionStorage.setItem(donationSessionKey, 'true');
       const timer = setTimeout(() => {
         setIsDonationModalOpen(true);
@@ -159,7 +157,7 @@ export default function ClientLayout({
       return () => clearTimeout(timer);
     }
     previousPathnameRef.current = pathname;
-  }, [pathname]);
+  }, [hasSeenWelcome, pathname]);
 
   useEffect(() => {
     startTransition(() => {
