@@ -126,6 +126,11 @@ input[type='checkbox']:focus-visible {
 .game-input:focus {
   outline: none !important;
   box-shadow: none !important;
+  border-color: color-mix(
+    in srgb,
+    var(--secondary-color) 80%,
+    transparent
+  ) !important;
 }
 
 :root {
